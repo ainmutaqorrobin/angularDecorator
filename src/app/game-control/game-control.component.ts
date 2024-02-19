@@ -16,8 +16,9 @@ export class GameControlComponent implements OnInit {
   flag: boolean = false;
   btnName: string = 'Start';
   count: number = 0;
+  currentTime: number = 0;
   timer: any;
-  @Output() intervalFired = new EventEmitter<number>();
+  @Output(`intervalFired`) intervalFired = new EventEmitter<number>();
 
   constructor() {}
   ngOnInit(): void {}
@@ -38,8 +39,8 @@ export class GameControlComponent implements OnInit {
     this.timer = setInterval(() => {
       this.intervalFired.emit(this.count + 1);
       this.count++;
-      console.log(`test ` + this.count);
-      console.log(`IntervalFired value is ` + this.intervalFired);
+      this.currentTime++;
+      console.log(`Current Time is ` + this.currentTime);
     }, 1000);
   }
 

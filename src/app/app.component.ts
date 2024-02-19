@@ -8,6 +8,8 @@ import { ServerElementComponent } from './server-element/server-element.componen
 })
 export class AppComponent {
   serverElements = [{ type: `server`, name: `Test`, content: `content test` }];
+  oddNumbers: Array<number> = [];
+  evenNumbers: Array<number> = [];
 
   onServerAdded(serverData: { serverName: string; serverContent: string }) {
     this.serverElements.push({
@@ -16,7 +18,6 @@ export class AppComponent {
       content: serverData.serverContent,
     });
   }
-
   onBlueprintAdded(blueprintData: {
     serverName: string;
     serverContent: string;
@@ -27,11 +28,15 @@ export class AppComponent {
       content: blueprintData.serverContent,
     });
   }
-
   onButtonClicked() {
     this.serverElements[0].name = `Changed!`;
   }
   onDestroyClicked() {
     this.serverElements.pop();
+  }
+  onIntervalFired(firedNumber: number) {
+    if (firedNumber % 2 === 0) {
+      this.evenNumbers.push(firedNumber);
+    } else this.oddNumbers.push(firedNumber);
   }
 }
