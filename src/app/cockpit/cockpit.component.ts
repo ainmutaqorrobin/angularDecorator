@@ -1,5 +1,11 @@
 import { HtmlParser } from '@angular/compiler';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -15,6 +21,8 @@ export class CockpitComponent implements OnInit {
     serverName: string;
     serverContent: string;
   }>();
+  @ViewChild(`contentParagraph`, { static: true }) serverContentInput;
+
   newServerName: string = '';
   newServerContent: string = '';
 
@@ -22,16 +30,18 @@ export class CockpitComponent implements OnInit {
 
   ngOnInit() {}
 
-  onAddServer(serverNameInput:HTMLInputElement) {    
-    this.serverCreated.emit({
-      serverName: serverNameInput.value,
-      serverContent: this.newServerContent,
-    });
+  onAddServer(serverNameInput: HTMLInputElement) {
+    // this.serverCreated.emit({
+    //   serverName: serverNameInput.value,
+    //   serverContent: this.newServerContent,
+    console.log(this.serverContentInput);
   }
-  onAddBlueprint(serverNameInput:HTMLInputElement) {
-    this.blueprintCreated.emit({
-      serverName: serverNameInput.value,
-      serverContent: this.newServerContent,
-    });
+
+  onAddBlueprint(serverNameInput: HTMLInputElement) {
+    //   this.blueprintCreated.emit({
+    //     serverName: serverNameInput.value,
+    //     serverContent: this.newServerContent,
+    //   });
+    // }
   }
 }
